@@ -59,9 +59,11 @@ class Deploy {
   connectSSH = async () => {
     const ssh = new NodeSSH()
 
-    let privateKeyPath = this.config.privateKeyPath
+    let { privateKeyPath } = this.config
+    
+    
 
-    if (privateKeyPath.startsWith("~")) {
+    if (privateKeyPath?.startsWith("~")) {
       privateKeyPath = privateKeyPath.replace(
         "~",
         process.env.HOME || process.env.USERPROFILE || ""
